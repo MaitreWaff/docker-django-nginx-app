@@ -1,9 +1,8 @@
 services:
   db:
     image: postgres
-    container_name: lmdso-pgdb
+    container_name: app-pgdb
     volumes:
-      # - /Users/maitrewaff/dbs/prodDB/lmdsoDB/data/db:/var/lib/postgresql/data
       - pgData:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=${DB_NAME}
@@ -21,19 +20,15 @@ services:
       - static_volume:/code/static
       - media_volume:/code/media
     image: lmdso-bend-image
-    container_name: lmdso-backend
+    container_name: app-backend
     ports:
       - "8000:8000"
-    # environment:
-    #   - POSTGRES_NAME=postgres
-    #   - POSTGRES_USER=postgres
-    #   - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
   
   nginx:
     image: nginx:latest
-    container_name: lmdso-nginx
+    container_name: app-nginx
     ports:
       - 80:8080
     volumes:
