@@ -19,7 +19,7 @@ services:
       - ./bend:/code
       - static_volume:/code/static
       - media_volume:/code/media
-    image: lmdso-bend-image
+    image: app-bend-image
     container_name: app-backend
     ports:
       - "8000:8000"
